@@ -142,8 +142,9 @@ python -m apps.anime --subject "Abraham Lincoln" --res_dir your_result_path
 
 # Tips and Tricks
 * using an appropriate learning rate for SMPL-X shape is important to learn accurate shape. 
+* Omnidata normal supervision can effectively enhance the overall geometry and texture consistency; however, it demands more time for optimization.
 
-
+ 
 # Citation
 
 ```bibtex
