@@ -33,7 +33,11 @@
 <div align="center">
     <img src="https://tada.is.tue.mpg.de/media/upload/teaser.png" alt="Logo" width="100%">
 </div>
+ 
+ 
 
+TADA takes text as input and produce holistic animatable 3D avatars with high-quality geometry and texture. 
+It enables creation of large-scale digital character assets that are ready for animation and rendering, while also being easily editable through natural language. 
 
 **NEWS (2023.9.24)**:
 
@@ -46,23 +50,13 @@ https://github.com/TingtingLiao/TADA-code/assets/45743512/248d70ab-f755-46f1-bb4
 https://github.com/TingtingLiao/TADA-code/assets/45743512/d7ad2b0f-6c29-46ba-9090-d91d027a5a6b
 
 
-
-
-# TODO
-- [x] Adding Omnidata normal supervision for texture and geometry consistency
-- [ ] Supporting single image reconstruction 
-- [ ] Adding shading code 
-
-[//]: # (TADA takes text as input and produce holistic animatable 3D avatars with high-quality geometry and texture. )
-[//]: # (It enables creation of large-scale digital character assets that are ready for animation and rendering, while also being easily editable through natural language. )
- 
 # Install
 - System requirement: Unbuntu 20.04 
 - Tested GPUs: RTX4090, A100, V100 
 - Compiler: gcc-7.5 / g++-7.5 
-- Python 3.9, CUDA 11.5  
+- Python=3.9, CUDA=11.5, Pytorch=1.12.1
 
-```bash[readme.md](..%2F..%2F%E4%B8%8B%E8%BD%BD%2Freadme.md)
+```bash
 git clone git@github.com:TingtingLiao/TADA.git
 cd TADA
 
@@ -73,23 +67,64 @@ pip install -r requirements.txt
 cd smplx
 python setup.py install 
 ```
-- Download [TADA Extra Data](https://download.is.tue.mpg.de/download.php?domain=tada&resume=1&sfile=tada_extra_data.zip) 
-- Download [SMPL-X Model](http://smpl-x.is.tue.mpg.de/) and put it in the directory ./data/smplx
-- Download [Omnidata](https://github.com/EPFL-VILAB/omnidata/tree/main/omnidata_tools/torch) for depth and normal prediction.
-```bash
-mkdir data/omnidata 
-cd data/omnidata 
-gdown '1Jrh-bRnJEjyMCS7f-WsaFlccfPjJPPHI&confirm=t' # omnidata_dpt_depth_v2.ckpt
-gdown '1wNxVO4vVbDEMEpnAi_jwQObf2MFodcBR&confirm=t' # omnidata_dpt_normal_v2.ckpt
-```
 
- 
+# Data
+
+- [SMPL-X Model](http://smpl-x.is.tue.mpg.de/) (Required)
+- [TADA 100 Characters](https://drive.google.com/file/d/1rbkIpRmvPaVD9AJeCxWqBBYHkRIwrNmC/view?usp=sharing) (Required)
+- [TADA Extra Data](https://download.is.tue.mpg.de/download.php?domain=tada&resume=1&sfile=tada_extra_data.zip) (Required)
+- Optional Motion Data  
+  - [AIST](https://aistdancedb.ongaaccel.jp/), [AIST++](https://google.github.io/aichoreographer/)
+  - [TalkShow](https://github.com/yhw-yhw/TalkSHOW)
+  - [MotionDiffusion](https://github.com/GuyTevet/motion-diffusion-model)
+
+<details><summary>Please consider cite <strong>AIST, AIST++, TalkSHOW, MotionDiffusion</strong> if they also help on your project</summary>
+
+```bibtex
+
+@inproceedings{aist-dance-db,
+  author = {Shuhei Tsuchida and Satoru Fukayama and Masahiro Hamasaki and Masataka Goto}, 
+  title = {AIST Dance Video Database: Multi-genre, Multi-dancer, and Multi-camera Database for Dance Information Processing}, 
+  booktitle = {Proceedings of the 20th International Society for Music Information Retrieval Conference (ISMIR) },
+  year = {2019}, 
+  month = {Nov} 
+}
+
+@inproceedings{li2021learn,
+  title={AI Choreographer: Music Conditioned 3D Dance Generation with AIST++}, 
+  author={Ruilong Li and Shan Yang and David A. Ross and Angjoo Kanazawa},
+  year={2021},
+  booktitle={ICCV}
+}
+
+@inproceedings{yi2023generating,
+  title={Generating Holistic 3D Human Motion from Speech},
+  author={Yi, Hongwei and Liang, Hualin and Liu, Yifei and Cao, Qiong and Wen, Yandong and Bolkart, Timo and Tao, Dacheng and Black Michael J},
+  booktitle={CVPR}, 
+  pages={469-480},
+  month={June}, 
+  year={2023} 
+}
+
+@inproceedings{tevet2023human,
+  title={Human Motion Diffusion Model},
+  author={Guy Tevet and Sigal Raab and Brian Gordon and Yoni Shafir and Daniel Cohen-or and Amit Haim Bermano},
+  booktitle={ICLR},
+  year={2023},
+  url={https://openreview.net/forum?id=SJ1kSyO2jwu}
+}
+
+
+```
+</details>
+
+
  
 # Usage 
 
 ### Training 
 
-The results will be save in $workspace. Please change it in the config/*.yaml files.
+The results will be saved in $workspace. Please change it in the config/*.yaml files.
 ```python 
 # single prompt training    
 python -m apps.run --config configs/configs/tada_w_dpt.yaml.yaml --text "Aladdin in Aladdin" 
@@ -108,61 +143,14 @@ python -m apps.anime --subject "Abraham Lincoln" --res_dir your_result_path
 # Tips and Tricks
 * using an appropriate learning rate for SMPL-X shape is important to learn accurate shape. 
 
-# Acknolowget 
-This work is build upon Stable DreamFusion, many thanks to the author [Jiaxiang Tang](https://github.com/ashawkey) and many other contributors.
-* [Stable DreamFusion](https://github.com/ashawkey/stable-dreamfusion)  
-``` 
-@misc{stable-dreamfusion,
-    Author = {Jiaxiang Tang},
-    Year = {2022},
-    Note = {https://github.com/ashawkey/stable-dreamfusion},
-    Title = {Stable-dreamfusion: Text-to-3D with Stable-diffusion}
-}
-```  
-* [SMPL](https://smpl.is.tue.mpg.de/) and [SMPL-X](https://smpl-x.is.tue.mpg.de/)
-```
-@article{SMPL:2015,
-      author = {Loper, Matthew and Mahmood, Naureen and Romero, Javier and Pons-Moll, Gerard and Black, Michael J.},
-      title = {{SMPL}: A Skinned Multi-Person Linear Model},
-      journal = {ACM Trans. Graphics (Proc. SIGGRAPH Asia)},
-      month = oct,
-      number = {6},
-      pages = {248:1--248:16},
-      publisher = {ACM},
-      volume = {34},
-      year = {2015}
-    }
-    
-@inproceedings{SMPL-X:2019,
-  title = {Expressive Body Capture: {3D} Hands, Face, and Body from a Single Image},
-  author = {Pavlakos, Georgios and Choutas, Vasileios and Ghorbani, Nima and Bolkart, Timo and Osman, Ahmed A. A. and Tzionas, Dimitrios and Black, Michael J.},
-  booktitle = {Proceedings IEEE Conf. on Computer Vision and Pattern Recognition (CVPR)},
-  pages     = {10975--10985},
-  year = {2019}
-}
-```
-* [TalkShow](https://talkshow.is.tue.mpg.de/), [AIST]() and [MotionDiffusion](). 
-``` 
-@inproceedings{yi2023generating,
-title={Generating Holistic 3D Human Motion from Speech},
-  author={Yi, Hongwei and Liang, Hualin and Liu, Yifei and Cao, Qiong and Wen, Yandong 
-and Bolkart, Timo and Tao, Dacheng and Black, Michael J},
-booktitle={IEEE Conference on Computer Vision and Pattern Recognition (CVPR)}, 
-pages={469-480},
-month={June}, 
-year={2023} 
-}
-```
 
 # Citation
 
 ```bibtex
-@article{liao2023tada,
-title={TADA! Text to Animatable Digital Avatars},
-author={Liao, Tingting and Yi, Hongwei and Xiu, Yuliang and Jiaxiang Tang and Huang, Yangyi and Thies, Justus and Black, Michael J},
-journal={ArXiv},
-month={Aug}, 
-year={2023} 
+@inproceedings{liao2023tada,
+  title={{TADA! Text to Animatable Digital Avatars}},
+  author={Liao, Tingting and Yi, Hongwei and Xiu, Yuliang and Tang, Jiaxiang and Huang, Yangyi and Thies, Justus and Black, Michael J.},
+  booktitle={International Conference on 3D Vision (3DV)},
+  year={2024}
 }
 ```
-
