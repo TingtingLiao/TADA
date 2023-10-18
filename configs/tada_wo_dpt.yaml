@@ -1,0 +1,22 @@
+name: 'wo_normal_supervision'
+stage: geo_tex
+test: False
+model:
+  lock_geo: False
+  lock_tex: False
+  skip_bg: True
+  init_empty_tex: True
+  albedo_res: 2048
+  mesh: data/init_body/fit_smplx_dense.obj
+training:
+  anneal_tex_reso: True
+  train_face_ratio: 0.3
+  iters: 15000
+  ckpt: scratch
+  workspace: "../data/tada"
+  use_dpt: False
+data:
+  phi_range: [-180, 180]
+  theta_range: [60, 90]
+  head_phi_range: [-30, 30]
+  head_theta_range: [75, 85]

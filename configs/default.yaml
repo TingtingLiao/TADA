@@ -1,0 +1,82 @@
+name: 'default'
+seed: 0
+stage: "geo"
+fp16: False
+text: ""
+negative: ""
+test: False
+save_mesh: True
+guidance:
+  name: sd
+  vram_O: True
+  sd_version: '2.1'
+  hf_key: None
+training:
+  iters: 5000
+  albedo_iters: 10000
+  lr: 0.001
+  min_lr: 1e-4
+  ckpt: latest
+  anneal_tex_reso: False
+  optim: 'adan'
+  train_face_ratio: 0.3
+  eval_interval: 1
+  workspace: "../data/tada"
+  perpneg: False
+  geo_loss: []
+  sample_jaw_pose: False
+  known_view_interval: 1
+  known_view_noise_scale: 0.002
+  lambda_rgb: 1000
+  lambda_mask: 500
+  lambda_normal: 1000
+  lambda_depth: 10
+  use_dpt: False
+data:
+  h: 512
+  w: 512
+  H: 800
+  W: 800
+  near: 0.01
+  far: 1000
+  fovy_range: [50, 70]
+  radius_range: [1.0, 1.2]
+  default_fovy: 60
+  default_polar: 90
+#  fovy_range: [50, 51]
+#  radius_range: [1.19, 1.2]
+  default_radius: 1.1
+  default_azimuth: 0
+  phi_range: [-45, 45]
+  theta_range: [0, 120]
+  head_phi_range: [-30, 30]
+  head_theta_range: [85, 95]
+  angle_overhead: 30
+  angle_front: 90
+  dir_text: True
+  jitter_pose: False
+  uniform_sphere_rate: 0.
+#  image: "images/xiaole_rgba.png"
+#  image: "../data/tada/ablation_head/Cinderella/validation/ep0069_rgba.png"
+  image: ''
+model:
+  mesh: ""
+  tex_mlp: False
+  geo_mlp: False
+  skip_bg: True
+  lock_tex: False
+  lock_geo: False
+  lock_beta: False
+  lock_pose: True
+  lock_expression: False
+  albedo_res: 1024
+  init_empty_tex: True
+  replace_hands_eyes: True
+  ssaa: 2
+smpl:
+  model_path: 'data/smpl_related/models'
+  model_type: 'smpl_vitruvian'
+  gender: 'neutral'
+  use_face_contour: False
+  vitruvian_angle: 25
+
