@@ -66,13 +66,19 @@ pip install -r requirements.txt
  
 cd smplx
 python setup.py install 
+
+# download omnidata normal and depth prediction model 
+mkdir data/omnidata 
+cd data/omnidata 
+gdown '1Jrh-bRnJEjyMCS7f-WsaFlccfPjJPPHI&confirm=t' # omnidata_dpt_depth_v2.ckpt
+gdown '1wNxVO4vVbDEMEpnAi_jwQObf2MFodcBR&confirm=t' # omnidata_dpt_normal_v2.ckpt
 ```
 
 # Data
 
-- [SMPL-X Model](http://smpl-x.is.tue.mpg.de/) (Required)
-- [TADA 100 Characters](https://drive.google.com/file/d/1rbkIpRmvPaVD9AJeCxWqBBYHkRIwrNmC/view?usp=sharing) (Required)
-- [TADA Extra Data](https://download.is.tue.mpg.de/download.php?domain=tada&resume=1&sfile=tada_extra_data.zip) (Required)
+- [SMPL-X Model](http://smpl-x.is.tue.mpg.de/) (Need to register, download the SMPLX_NEUTRAL_2020.npz and put it into ./data/smplx/)
+- [TADA Extra Data](https://download.is.tue.mpg.de/download.php?domain=tada&resume=1&sfile=tada_extra_data.zip) (Required) Unzip it as directory ./data 
+- [TADA 100 Characters](https://drive.google.com/file/d/1rbkIpRmvPaVD9AJeCxWqBBYHkRIwrNmC/view?usp=sharing) (Optional)
 - Optional Motion Data  
   - [AIST](https://aistdancedb.ongaaccel.jp/), [AIST++](https://google.github.io/aichoreographer/)
   - [TalkShow](https://github.com/yhw-yhw/TalkSHOW)
@@ -139,12 +145,12 @@ bash scripts/run.sh data/prompt/fictional.txt 1 10 configs/tada.yaml
 python -m apps.anime --subject "Abraham Lincoln" --res_dir your_result_path
 ``` 
 
-
-
-# Tips and Tricks
-* using an appropriate learning rate for SMPL-X shape is important to learn accurate shape. 
+# Tips
+* Using an appropriate learning rate for SMPL-X shape is important to learn accurate shape. 
 * Omnidata normal supervision can effectively enhance the overall geometry and texture consistency; however, it demands more time for optimization.
 
+# Other Interesting Works
+* [HumanNorm](https://humannorm.github.io/): multiple stage SDS loss and perceptual loss can help generate the lifelike texture.
  
 # Citation
 
@@ -156,3 +162,6 @@ python -m apps.anime --subject "Abraham Lincoln" --res_dir your_result_path
   year={2024}
 }
 ```
+
+# License
+This code and model are available for non-commercial scientific research purposes as defined in the LICENSE (i.e., MIT LICENSE). 
