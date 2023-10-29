@@ -155,7 +155,7 @@ python -m apps.anime --subject "Abraham Lincoln" --res_dir your_result_path
 # Citation
 
 ```bibtex
-@inproceedings{liao2023tada,
+@inproceedings{liao2024tada,
   title={{TADA! Text to Animatable Digital Avatars}},
   author={Liao, Tingting and Yi, Hongwei and Xiu, Yuliang and Tang, Jiaxiang and Huang, Yangyi and Thies, Justus and Black, Michael J.},
   booktitle={International Conference on 3D Vision (3DV)},
