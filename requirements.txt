@@ -21,4 +21,5 @@ pyopengl==3.1.4
 iopath
 ninja
 mediapipe
+timm
 git+https://github.com/NVlabs/nvdiffrast.git
