@@ -163,6 +163,7 @@ python -m apps.anime --subject "Abraham Lincoln" --res_dir your_result_path
 # Related Works
 * [HumanNorm](https://humannorm.github.io/): multiple stage SDS loss and perceptual loss can help generate the lifelike texture.
 * [SemanticBoost](https://github.com/blackgold3/SemanticBoost): uses TADA's rigged avatars to demonstrate the generated motions.
+* [SignAvatars](https://signavatars.github.io/): uses TADA's rigged avatars to demonstrate the sign language data.
 
 # License
 This code and model are available for non-commercial scientific research purposes as defined in the LICENSE (i.e., MIT LICENSE). 
