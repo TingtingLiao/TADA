@@ -44,10 +44,10 @@ It enables creation of large-scale digital character assets that are ready for a
 * Using Omnidata normal prediction model to improve the normal&image consistency.
 
 
-https://github.com/TingtingLiao/TADA-code/assets/45743512/248d70ab-f755-46f1-bb4f-1a8468f30901
+https://github.com/TingtingLiao/TADA/assets/45743512/f626af25-3c5c-4ab5-bbe6-7a85d95af913
 
-
-https://github.com/TingtingLiao/TADA-code/assets/45743512/d7ad2b0f-6c29-46ba-9090-d91d027a5a6b
+https://github.com/TingtingLiao/TADA/assets/45743512/442d6617-3549-48cc-9868-e4fe0c4ba842
+ 
 
 
 # Install
