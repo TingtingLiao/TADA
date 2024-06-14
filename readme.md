@@ -133,7 +133,7 @@ gdown '1wNxVO4vVbDEMEpnAi_jwQObf2MFodcBR&confirm=t' # omnidata_dpt_normal_v2.ckp
 The results will be saved in $workspace. Please change it in the config/*.yaml files.
 ```python 
 # single prompt training    
-python -m apps.run --config configs/configs/tada_w_dpt.yaml.yaml --text "Aladdin in Aladdin" 
+python -m apps.run --config configs/tada_w_dpt.yaml --text "Aladdin in Aladdin" 
 
 # multiple prompts training
 bash scripts/run.sh data/prompt/fictional.txt 1 10 configs/tada.yaml
