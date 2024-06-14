@@ -273,7 +273,7 @@ class Trainer(object):
                 # normal sds
                 loss += self.guidance.train_step(dir_text_z, normal).mean()
                 # latent mean sds
-                loss += self.guidance.train_step(dir_text_z, torch.cat([normal, image.detach()])).mean()
+                # loss += self.guidance.train_step(dir_text_z, torch.cat([normal, image.detach()])).mean() * 0.1
             else:
                 if p_iter < 0.3 or random.random() < 0.5:
                     # normal sds
