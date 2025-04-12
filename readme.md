@@ -169,6 +169,12 @@ python -m apps.anime --subject "Abraham Lincoln" --res_dir your_result_path
 * [SignAvatars](https://signavatars.github.io/): uses TADA's rigged avatars to demonstrate the sign language data.
 * [GALA](https://snuvclab.github.io/gala/): uses TADA's avatars for asset generation. 
 
+## Contributors
+
+<a href="https://github.com/TingtingLiao/TADA/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=TingtingLiao/TADA" />
+</a>
+
 # License
 This code and model are available for non-commercial scientific research purposes as defined in the LICENSE (i.e., MIT LICENSE). 
 Note that, using TADA, you have to register SMPL-X and agree with the LICENSE of it, and it's not MIT LICENSE, you can check the LICENSE of SMPL-X from https://github.com/vchoutas/smplx/blob/main/LICENSE; Enjoy your journey of exploring more beautiful avatars in your own application.
